@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     {
         surviveTime = 0;
         isGameover = false;
+        
     }
 
     // Update is called once per frame
