@@ -7,20 +7,24 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public GameObject gameoverText;
+    public GameObject healthCanvas;
+    public GameObject qt_Button;
+    public GameObject countdownBar;
+    public GameObject _timeText;
     public Text timeText;
     public Text recordText;
 
     private float surviveTime; //생존 시간
     private bool isGameover; //게임오버 상태
+    [SerializeField] public HealthController healthController;
+
 
     // Start is called before the first frame update
     void Start()
     {
         surviveTime = 0;
         isGameover = false;
-        
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -36,11 +40,21 @@ public class GameManager : MonoBehaviour
                 SceneManager.LoadScene("SampleScene");
             }
         }
+
+        if (healthController.PlayerHealth == 0)
+        {
+            EndGame();
+        }
     }
     public void EndGame()
     {
         isGameover = true;
         gameoverText.SetActive(true);
+        healthCanvas.SetActive(false);
+        qt_Button.SetActive(false);
+        countdownBar.SetActive(false);
+        _timeText.SetActive(false);
+
 
         float bestTime = PlayerPrefs.GetFloat("BestTime");
 

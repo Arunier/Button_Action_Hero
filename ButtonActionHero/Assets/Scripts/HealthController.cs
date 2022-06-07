@@ -11,9 +11,9 @@ public class HealthController : MonoBehaviour
 
     public void UpdateHealth()
     {
-        for(int i = 0; i < hearts.Length; i++)
+        for (int i = 0; i < hearts.Length; i++)
         {
-            if(i < PlayerHealth)
+            if (i < PlayerHealth)
             {
                 hearts[i].color = Color.white;
             }
@@ -29,9 +29,8 @@ public class HealthController : MonoBehaviour
         UpdateHealth();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        UpdateHealth();
     }
 }
