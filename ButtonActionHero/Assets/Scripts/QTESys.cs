@@ -6,11 +6,12 @@ using UnityEngine.UI;
 public class QTESys : MonoBehaviour
 {
     public GameObject DisplayBox; //눌러야하는 키를 표시
-    public GameObject Passbox;
+    public GameObject Passbox; 
     public int QTEGen;
     public int WaitingForKey;
     public int CorrectKey;
     public int DefeatedMonster;
+    public int Score;
     public bool isQTEClear;
     public int Duration;
     public float remainingDuration;
@@ -133,12 +134,12 @@ public class QTESys : MonoBehaviour
         if(CorrectKey == 1) //입력한 키가 맞을때
         {
             Passbox.GetComponent<Text>().text = "CLEAR!";
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(.5f);
             CorrectKey = 0;
             DefeatedMonster++;
             Passbox.GetComponent<Text>().text = "";
             DisplayBox.GetComponent<Text>().text = "";
-            yield return new WaitForSeconds(.5f);
+            yield return new WaitForSeconds(.3f);
             WaitingForKey = 0;
             enemyRandraw.Draw();
         }
@@ -147,11 +148,11 @@ public class QTESys : MonoBehaviour
             Passbox.GetComponent<Text>().text = "FAIL!";
             healthController.PlayerHealth -= 1; //플레이어의 체력 1 감소
             //Debug.Log("틀린판정");
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(.5f);
             CorrectKey = 0;
             Passbox.GetComponent<Text>().text = "";
             DisplayBox.GetComponent<Text>().text = "";
-            yield return new WaitForSeconds(.5f);
+            yield return new WaitForSeconds(.3f);
             WaitingForKey = 0;
         }
     }

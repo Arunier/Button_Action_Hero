@@ -14,7 +14,6 @@ public class GameManager : MonoBehaviour
     public Text KillText;
     public Text recordText;
 
-    private float surviveTime; //생존 시간
     private bool isGameover; //게임오버 상태
 
     public QTESys qTESys;
@@ -24,7 +23,6 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        surviveTime = 0;
         isGameover = false;
     }
     // Update is called once per frame
