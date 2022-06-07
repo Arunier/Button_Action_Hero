@@ -10,12 +10,14 @@ public class GameManager : MonoBehaviour
     public GameObject healthCanvas;
     public GameObject qt_Button;
     public GameObject countdownBar;
-    public GameObject _timeText;
-    public Text timeText;
+    public GameObject _killText;
+    public Text KillText;
     public Text recordText;
 
     private float surviveTime; //생존 시간
     private bool isGameover; //게임오버 상태
+
+    public QTESys qTESys;
     [SerializeField] public HealthController healthController;
 
 
@@ -30,8 +32,7 @@ public class GameManager : MonoBehaviour
     {
         if(!isGameover)
         {
-            surviveTime += Time.deltaTime;
-            timeText.text = "Time : " + surviveTime.ToString("F2");
+            KillText.text = "Kill : " + qTESys.DefeatedMonster;
         }
         else
         {
@@ -53,17 +54,17 @@ public class GameManager : MonoBehaviour
         healthCanvas.SetActive(false);
         qt_Button.SetActive(false);
         countdownBar.SetActive(false);
-        _timeText.SetActive(false);
+        _killText.SetActive(false);
 
 
-        float bestTime = PlayerPrefs.GetFloat("BestTime");
+        int bestKill = PlayerPrefs.GetInt("BestKill");
 
-        if(surviveTime > bestTime)
+        if(qTESys.DefeatedMonster > bestKill)
         {
-            bestTime = surviveTime;
-            PlayerPrefs.SetFloat("BestTime", bestTime);
+            bestKill = qTESys.DefeatedMonster;
+            PlayerPrefs.SetFloat("BestKill", bestKill);
         }
 
-        recordText.text = "Best Time : " + bestTime.ToString("F2");
+        recordText.text = "Best Kill : " + bestKill;
     }
 }

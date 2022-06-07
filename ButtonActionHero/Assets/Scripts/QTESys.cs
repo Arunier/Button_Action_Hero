@@ -10,10 +10,13 @@ public class QTESys : MonoBehaviour
     public int QTEGen;
     public int WaitingForKey;
     public int CorrectKey;
+    public int DefeatedMonster;
     public bool isQTEClear;
     public int Duration;
     public float remainingDuration;
 
+    public EnemyRandraw enemyRandraw;
+    public GameManager gameManager;
     [SerializeField] public HealthController healthController;
     [SerializeField] private Image uiFill;
 
@@ -30,7 +33,7 @@ public class QTESys : MonoBehaviour
         if(WaitingForKey == 0)
         {
             QTEGen = Random.Range(1, 5); //1부터 4까지 난수 생성
-            Being(Duration);
+            //Being(Duration);
 
             if(QTEGen == 1)
             {
@@ -132,10 +135,12 @@ public class QTESys : MonoBehaviour
             Passbox.GetComponent<Text>().text = "CLEAR!";
             yield return new WaitForSeconds(1.0f);
             CorrectKey = 0;
+            DefeatedMonster++;
             Passbox.GetComponent<Text>().text = "";
             DisplayBox.GetComponent<Text>().text = "";
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(.5f);
             WaitingForKey = 0;
+            enemyRandraw.Draw();
         }
         if (CorrectKey == 2)// 입력한 키가 틀릴때
         {
@@ -146,7 +151,7 @@ public class QTESys : MonoBehaviour
             CorrectKey = 0;
             Passbox.GetComponent<Text>().text = "";
             DisplayBox.GetComponent<Text>().text = "";
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(.5f);
             WaitingForKey = 0;
         }
     }
@@ -178,7 +183,7 @@ public class QTESys : MonoBehaviour
         StartCoroutine(UpdateTimer());
     }
 
-    private IEnumerator UpdateTimer()
+    private IEnumerator UpdateTimer() //거의 62초정도 됨
     {
         while(remainingDuration >= 0)
         {
@@ -192,14 +197,7 @@ public class QTESys : MonoBehaviour
 
         if(remainingDuration == 0)
         {
-            QTEGen = 5;
-            Passbox.GetComponent<Text>().text = "FAIL!";
-            healthController.PlayerHealth -= 1; //체력이 1감소해야하는데 왜 2개가 날아가지?
-            yield return new WaitForSeconds(.5f);
-            //Debug.Log("체력 날아감");
-            Passbox.GetComponent<Text>().text = "";
-            CorrectKey = 0;
-            WaitingForKey = 0;
+            gameManager.EndGame();
         }
 
     }
