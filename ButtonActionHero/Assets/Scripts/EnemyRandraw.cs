@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class EnemyRandraw : MonoBehaviour
 {
+
+    public static EnemyRandraw instance;
+
     public Image EnemyImage;
 
     public Sprite Image1;
@@ -19,19 +22,26 @@ public class EnemyRandraw : MonoBehaviour
     public Sprite Image10;
 
     public static int RandomInt;
-
+    private void Awake()
+    {
+        if(instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        instance = this;
+    }
     private void Start()
     {
-        RandomInt = Random.Range(0, 10);
         Draw();
     }
     void Update()
     {
-        RandomInt = Random.Range(0, 10);
     }
 
     public void Draw()
     {
+        RandomInt = Random.Range(1, 10);
         if(RandomInt == 1)
         {
             EnemyImage.sprite = Image1;
