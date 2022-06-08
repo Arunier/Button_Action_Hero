@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    
     public GameObject gameoverText;
     public GameObject healthCanvas;
     public GameObject countdownBar;
@@ -40,12 +41,12 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         isGameover = false;
     }
     // Update is called once per frame
     void Update()
     {
-        
         if(!isGameover)
         {
             KillText.text = "Kill : " + qTESys.DefeatedMonster;

@@ -241,10 +241,10 @@ public class QTESys : MonoBehaviour
         while(remainingDuration >= 0)
         {
             uiFill.fillAmount = Mathf.InverseLerp(0,Duration, remainingDuration);
-            remainingDuration -= 0.02f;
+            remainingDuration -= 0.026f;
             
 
-            yield return new WaitForSeconds(0.04f);
+            yield return new WaitForSeconds(0.024f);
 
         }
 
