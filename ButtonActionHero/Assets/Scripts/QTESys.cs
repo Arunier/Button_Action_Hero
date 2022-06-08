@@ -33,7 +33,7 @@ public class QTESys : MonoBehaviour
         isQTEClear = false;
     }
 
-
+    //QTE 시스템
     KeyCode[] keyList = new KeyCode[8];
     int count = 0;
 
@@ -51,7 +51,6 @@ public class QTESys : MonoBehaviour
             {
 
                 QTEGen = Random.Range(1, 5); //1부터 4까지 난수 생성
-                //Being(Duration);
                 DisplayBox[i] = Instantiate(DisplayBoxParentParentPrefab, transform.position, Quaternion.identity, displayBoxPannel);
                 if(QTEGen == 1)
                 {
@@ -151,16 +150,17 @@ public class QTESys : MonoBehaviour
 
         if (Input.anyKeyDown)
         {
-            if (Input.GetKeyDown(keyList[count]))
+            if (Input.GetKeyDown(keyList[count]))//정확한 키를 입력했을때
             {
                 CorrectKey = 1;
                 DisplayBox[count].transform.GetChild(0).GetComponent<Image>().color = Color.black;
+                SoundManager.instance.PlayKeyDownSound();
                 StartCoroutine(KeyPressing());
             }
             else
             {
                 CorrectKey = 2;
-
+                SoundManager.instance.WrongKeyDownSound();
                 StartCoroutine(KeyPressing());
             }
         }
@@ -229,6 +229,7 @@ public class QTESys : MonoBehaviour
         }
     }
 
+    //타이머
     private void Being(int Second)
     {
         remainingDuration = Second;

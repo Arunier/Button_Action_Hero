@@ -849,8 +849,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcce6c6b1e5192248a51d2dfc1d4d88b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: 8a970b8a1346306489f234781595b496, type: 3}
-  keyDownSound: {fileID: 0}
+  Bgm: {fileID: 8300000, guid: e07176f754cdc454082fe8108fe16833, type: 3}
+  QteCorrectSound: {fileID: 8300000, guid: 8bb1d7826ddb6d44c9dd019180b2da73, type: 3}
+  QteWrongSound: {fileID: 8300000, guid: 28f9accb1611f16479e88dfde573ef0b, type: 3}
 --- !u!82 &1847537112
 AudioSource:
   m_ObjectHideFlags: 0
@@ -863,7 +864,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8a970b8a1346306489f234781595b496, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0
+  m_Volume: 0.15
   m_Pitch: 1
   Loop: 1
   Mute: 0

@@ -7,8 +7,9 @@ public class SoundManager : MonoBehaviour
     public static SoundManager instance;
 
     AudioSource audioSource;
-    public AudioClip clip;
-    public AudioClip keyDownSound;
+    public AudioClip Bgm;
+    public AudioClip QteCorrectSound;
+    public AudioClip QteWrongSound;
 
     private void Awake()
     {
@@ -18,21 +19,26 @@ public class SoundManager : MonoBehaviour
             return;
         }
         instance = this;
-
+        
         DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        audioSource.clip = clip;
+        audioSource.clip = Bgm;
         audioSource.Play();
-        //audioSource.PlayOneShot(clip, 100);
+
 
     }
 
     public void PlayKeyDownSound()
     {
-        audioSource.PlayOneShot(keyDownSound);
+        audioSource.PlayOneShot(QteCorrectSound, 2f);
+    }
+
+    public void WrongKeyDownSound()
+    {
+        audioSource.PlayOneShot(QteWrongSound, 7f);
     }
 }

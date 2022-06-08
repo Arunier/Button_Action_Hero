@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour
 
     public GameObject gameoverText;
     public GameObject healthCanvas;
-    //public GameObject qt_Button;
     public GameObject countdownBar;
     public GameObject _killText;
     public Text scoreText;
